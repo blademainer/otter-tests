@@ -1,0 +1,59 @@
+version: "3"
+services:
+  db1:
+    image: mysql:5.7
+    ports:
+      - "13306:3306"
+    volumes:
+      - "./mysql3306:/var/lib/mysql"
+    networks:
+    - backend
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+  db2:
+    image: mysql:5.7
+    ports:
+      - "13307:3306"
+    volumes:
+      - "./mysql3307:/var/lib/mysql"
+    networks:
+    - backend
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+  db3:
+    image: mysql:5.7
+    ports:
+      - "13308:3306"
+    volumes:
+      - "./mysql3308:/var/lib/mysql"
+    networks:
+    - backend
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+networks:
+  frontend:
+  backend:
+
+#volumes:
+#  mysql3306: ./mysql3306
